@@ -1,0 +1,48 @@
+---
+import Logo from './Logo.astro';
+import { CONTENT, SITE, links, type Locale } from '../config/site';
+const { lang } = Astro.props as { lang: Locale };
+const t = CONTENT[lang];
+const l = links(lang);
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <Logo class="footer__logo" />
+      <p class="footer__tagline">{t.tagline}</p>
+      {SITE.location && <p class="footer__loc">{SITE.location}</p>}
+    </div>
+
+    <nav class="footer__links" aria-label={t.nav.contact}>
+      <a href={l.instagram} target="_blank" rel="noopener">Instagram</a>
+      <a href={l.email}>{t.contact.emailLabel}</a>
+      <a href={l.whatsapp} target="_blank" rel="noopener">WhatsApp</a>
+    </nav>
+  </div>
+
+  <div class="container footer__bottom">
+    <p>© {year} {SITE.name}. {t.footerRights}</p>
+  </div>
+</footer>
+
+<style>
+  .footer { background: var(--olive-deep); color: var(--beige); padding-top: clamp(3rem, 6vw, 5rem); }
+  .footer__inner {
+    display: flex; flex-wrap: wrap; gap: 2rem;
+    justify-content: space-between; align-items: flex-end;
+    padding-bottom: 2.5rem; border-bottom: 1px solid rgba(239, 231, 217, 0.18);
+  }
+  .footer__logo { color: var(--cream); font-size: 1.2rem; }
+  .footer__tagline { color: var(--beige); opacity: 0.85; margin-top: 0.9rem; }
+  .footer__loc { font-size: 0.85rem; opacity: 0.6; margin-top: 0.4rem; }
+  .footer__links { display: flex; gap: 2rem; }
+  .footer__links a { font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase; position: relative; }
+  .footer__links a::after {
+    content: ''; position: absolute; left: 0; bottom: -4px;
+    width: 0; height: 1px; background: var(--beige); transition: width 0.3s ease;
+  }
+  .footer__links a:hover::after { width: 100%; }
+  .footer__bottom { padding-block: 1.75rem; font-size: 0.75rem; letter-spacing: 0.06em; opacity: 0.55; }
+</style>

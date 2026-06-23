@@ -1,0 +1,44 @@
+---
+import { CONTENT, SITE, links, type Locale } from '../config/site';
+
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+const t = CONTENT[lang];
+const l = links(lang);
+---
+
+<section class="cta section">
+  <div class="container cta__inner reveal">
+    <p class="eyebrow cta__eyebrow">{t.cta.eyebrow}</p>
+    <p class="cta__text cta__text--lead">{t.cta.text}</p>
+
+    <div class="cta__actions">
+      <a href={l.whatsapp} target="_blank" rel="noopener" class="btn btn--solid">WhatsApp</a>
+      <a href={l.email} class="btn btn--light">{t.contact.emailLabel}</a>
+      <a href={l.instagram} target="_blank" rel="noopener" class="btn btn--light">Instagram</a>
+    </div>
+
+    <p class="cta__detail">{SITE.contact.instagram.handle} &nbsp;·&nbsp; {SITE.contact.email}</p>
+  </div>
+</section>
+
+<style>
+  .cta { background: var(--olive); color: var(--cream); text-align: center; }
+  .cta__inner { max-width: 760px; }
+  .cta__eyebrow { color: var(--beige); }
+  .cta__title { color: var(--cream); margin-top: 0.6rem; }
+  .cta__text { color: var(--beige); margin: 1.25rem auto 0; max-width: 52ch; font-weight: 300; }
+  .cta__text--lead {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(1.6rem, 3.2vw, 2.5rem);
+    line-height: 1.3;
+    color: var(--cream);
+    max-width: 26ch;
+    margin-top: 0.8rem;
+  }
+  .cta__actions { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-top: 2.5rem; }
+  .cta__detail { margin-top: 2rem; font-size: 0.82rem; letter-spacing: 0.1em; color: var(--beige); opacity: 0.75; }
+</style>

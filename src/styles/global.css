@@ -1,0 +1,141 @@
+/* =============================================================================
+   ESTUDIO AM · estilos globales
+   Paleta: BEIGE dominante + olivo (#54491d) y granate como acentos.
+   ========================================================================== */
+
+:root {
+  /* ---- Paleta ------------------------------------------------------------- */
+  --cream: #faf6ee;          /* fondo principal (blanco cálido) */
+  --beige: #ece2d2;          /* beige */
+  --beige-soft: #f4ede1;     /* beige claro (secciones) */
+  --sand: #e0d3bd;           /* arena (beige más profundo) */
+  --olive: #54491d;          /* olivo — acento profundo (tu muestra "Olive") */
+  --olive-deep: #37301a;     /* olivo muy oscuro (pie de página) */
+  --olive-soft: #7a7048;     /* olivo claro / khaki (texto y bordes sutiles) */
+  --maroon: #73303c;         /* granate — acento principal (botones, enlaces) */
+  --maroon-deep: #592430;    /* granate oscuro (hover) */
+  --ink: #3a3322;            /* texto y títulos (marrón-oliva muy oscuro) */
+  --ink-soft: #756c58;       /* texto secundario (taupe) */
+  --line: rgba(84, 73, 29, 0.16);
+  --white: #ffffff;
+
+  /* ---- Tipografía -------------------------------------------------------- */
+  --font-display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-body: 'Jost', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* ---- Medidas ----------------------------------------------------------- */
+  --maxw: 1320px;
+  --gutter: clamp(1.25rem, 5vw, 4rem);
+  --section-y: clamp(4rem, 9vw, 8rem);
+}
+
+/* ---- Reset ligero -------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: clamp(1rem, 0.5vw + 0.9rem, 1.075rem);
+  line-height: 1.7;
+  color: var(--ink);
+  background: var(--cream);
+  overflow-x: hidden;
+}
+
+img, picture, video { display: block; max-width: 100%; height: auto; }
+a { color: inherit; text-decoration: none; }
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+}
+
+/* ---- Display ------------------------------------------------------------- */
+.display-xl { font-size: clamp(2.75rem, 8vw, 6.5rem); }
+.display-lg { font-size: clamp(2.25rem, 5.5vw, 4.25rem); }
+.display-md { font-size: clamp(1.85rem, 3.5vw, 3rem); }
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--maroon);
+}
+
+.lead {
+  font-size: clamp(1.1rem, 1.4vw, 1.35rem);
+  color: var(--ink-soft);
+  font-weight: 300;
+}
+
+/* ---- Layout helpers ------------------------------------------------------ */
+.container {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+.section { padding-block: var(--section-y); }
+
+.section-head { margin-bottom: clamp(2rem, 4vw, 3.5rem); }
+.section-head .eyebrow { display: block; margin-bottom: 0.6rem; }
+
+/* ---- Botones ------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 1.05em 2.1em;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background-color 0.35s ease, color 0.35s ease, border-color 0.35s ease, transform 0.35s ease;
+}
+.btn--solid { background: var(--maroon); color: var(--cream); }
+.btn--solid:hover { background: var(--maroon-deep); transform: translateY(-2px); }
+.btn--outline { border-color: var(--olive); color: var(--ink); }
+.btn--outline:hover { background: var(--olive); color: var(--cream); border-color: var(--olive); }
+.btn--light { border-color: rgba(250, 246, 238, 0.6); color: var(--cream); }
+.btn--light:hover { background: var(--cream); color: var(--olive); }
+
+/* ---- Reveal al hacer scroll ---------------------------------------------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+.reveal.is-visible { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* ---- Impresión / exportación a PDF --------------------------------------- */
+@media print {
+  *, *::before, *::after {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  .site-header, .nav-toggle, .hero__scroll, .lightbox { display: none !important; }
+  .reveal { opacity: 1 !important; transform: none !important; }
+  .hero { height: 82vh !important; min-height: 0 !important; }
+  section, figure, img, blockquote, .svc-card, .p-item, .featured__item { break-inside: avoid; }
+}

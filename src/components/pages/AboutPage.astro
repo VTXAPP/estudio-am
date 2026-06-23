@@ -1,0 +1,50 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import ContactCTA from '../ContactCTA.astro';
+import { CONTENT, PORTRAIT, type Locale } from '../../config/site';
+
+const { lang } = Astro.props as { lang: Locale };
+const t = CONTENT[lang];
+---
+
+<Base lang={lang} pageKey="about" title={t.nav.about}>
+  <section class="about section">
+    <div class="container about__grid">
+      <div class="about__media reveal">
+        <Image src={PORTRAIT} alt={t.about.title} widths={[500, 900, 1300]} sizes="(max-width: 760px) 100vw, 45vw" />
+      </div>
+      <div class="about__text reveal">
+        <p class="eyebrow">{t.about.eyebrow}</p>
+        <h1 class="display-lg about__title">{t.about.title}</h1>
+        {t.about.paragraphs.map((p) => <p class="about__p">{p}</p>)}
+      </div>
+    </div>
+
+    {t.about.quote && (
+      <div class="container about__quote-wrap reveal">
+        <blockquote class="about__quote display-md">“{t.about.quote}”</blockquote>
+      </div>
+    )}
+  </section>
+
+  <ContactCTA lang={lang} />
+</Base>
+
+<style>
+  .about { padding-top: calc(78px + clamp(3rem, 6vw, 6rem)); }
+  .about__grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(2rem, 5vw, 5rem); align-items: center; }
+  .about__media { overflow: hidden; aspect-ratio: 4 / 5; }
+  .about__media img { width: 100%; height: 100%; object-fit: cover; }
+  .about__title { margin: 0.5rem 0 1.5rem; }
+  .about__p { color: var(--ink-soft); margin-bottom: 1.1rem; max-width: 56ch; }
+
+  .about__quote-wrap { margin-top: clamp(4rem, 8vw, 7rem); text-align: center; }
+  .about__quote { max-width: 30ch; margin: 0 auto; color: var(--ink); font-style: italic; padding-top: 2rem; }
+  .about__quote-wrap::before { content: ''; display: block; width: 48px; height: 1px; background: var(--maroon); margin: 0 auto 2rem; }
+
+  @media (max-width: 760px) {
+    .about__grid { grid-template-columns: 1fr; }
+    .about__media { max-width: 440px; }
+  }
+</style>
