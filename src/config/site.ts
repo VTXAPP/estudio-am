@@ -53,7 +53,7 @@ export const SITE = {
   name: 'Estudio AM',
   location: '[Tu ciudad]',
   contact: {
-    instagram: { handle: '@esssstudioam', url: 'https://www.instagram.com/esssstudioam/' },
+    instagram: { handle: '@essstudioam', url: 'https://www.instagram.com/essstudioam/' },
     email: 'esssstudioam@gmail.com',
     /** WhatsApp internacional SIN signos ni espacios. MX: 52 + 10 dígitos. */
     whatsapp: '525539394586', // +52 55 3939 4586
