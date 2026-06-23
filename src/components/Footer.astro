@@ -12,7 +12,7 @@ const year = new Date().getFullYear();
     <div class="footer__brand">
       <Logo class="footer__logo" />
       <p class="footer__tagline">{t.tagline}</p>
-      {SITE.location && <p class="footer__loc">{SITE.location}</p>}
+      <p class="footer__loc">{t.location}</p>
     </div>
 
     <nav class="footer__links" aria-label={t.nav.contact}>

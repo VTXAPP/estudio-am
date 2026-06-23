@@ -36,6 +36,7 @@ import am23 from '../assets/am-23.jpg';
 import am24 from '../assets/am-24.jpg';
 import am25 from '../assets/am-25.jpg';
 import am26 from '../assets/am-26.jpg';
+import amPortrait from '../assets/am-portrait.jpg'; // retrato de la fotógrafa (Sobre mí)
 
 export const IMG = {
   am01, am02, am03, am04, am05, am06, am07, am08, am09, am10, am11, am12, am13,
@@ -104,13 +105,14 @@ export const PHOTOS: Photo[] = [
 
 /** Foto de portada (hero) — novia + novio en El Escorial. */
 export const HERO = am26;
-/** Retrato para "Sobre mí" (⚠️ reemplaza por un retrato real de la fotógrafa). */
-export const PORTRAIT = am07;
+/** Retrato de la fotógrafa para "Sobre mí" (se muestra en blanco y negro). */
+export const PORTRAIT = amPortrait;
 
 /* =============================  TEXTOS  ================================== */
 type Service = { title: string; text: string };
 type Strings = {
   tagline: string;
+  location: string;
   metaDescription: string;
   nav: Record<PageKey, string>;
   langToggle: string; // etiqueta del botón para cambiar de idioma
@@ -140,6 +142,7 @@ type Strings = {
 export const CONTENT: Record<Locale, Strings> = {
   es: {
     tagline: 'Fotografía de bodas, eventos y retratos',
+    location: 'Ciudad de México · disponible para viajar bajo solicitud',
     metaDescription:
       'Estudio AM · Fotografía de bodas, eventos y retratos. Imágenes naturales, elegantes y atemporales que cuentan tu historia.',
     nav: { home: 'Inicio', portfolio: 'Portafolio', about: 'Sobre mí', contact: 'Contacto' },
@@ -209,6 +212,7 @@ export const CONTENT: Record<Locale, Strings> = {
 
   en: {
     tagline: 'Wedding, event and portrait photography',
+    location: 'Mexico City · available for overseas work upon request',
     metaDescription:
       'Estudio AM · Wedding, event and portrait photography. Natural, elegant and timeless images that tell your story.',
     nav: { home: 'Home', portfolio: 'Portfolio', about: 'About', contact: 'Contact' },
