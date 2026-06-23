@@ -54,8 +54,8 @@ export const SITE = {
   contact: {
     instagram: { handle: '@estudioam', url: 'https://instagram.com/estudioam' },
     email: 'hola@estudioam.com',
-    /** WhatsApp internacional SIN signos ni espacios. ES: 34… · MX: 521… */
-    whatsapp: '34600000000',
+    /** WhatsApp internacional SIN signos ni espacios. MX: 52 + 10 dígitos. */
+    whatsapp: '525539394586', // +52 55 3939 4586
   },
 };
 
